@@ -1,15 +1,18 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
-import { createUserWithEmailAndPassword,signInWithEmailAndPassword ,updateProfile } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 import { checkValidData } from "../utils/validate";
 import { auth } from "../utils/Firebase";
-import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  const navigate = useNavigate()
-  const name = useRef()
+
+  const name = useRef();
   const email = useRef(null);
   const password = useRef(null);
 
@@ -18,7 +21,7 @@ const Login = () => {
     setErrorMessage(message);
     if (message) return;
 
-    if(!isSignInForm){
+    if (!isSignInForm) {
       // Sign Up Logic
       createUserWithEmailAndPassword(
         auth,
@@ -29,46 +32,38 @@ const Login = () => {
           // Signed in
           const user = userCredential.user;
           updateProfile(user, {
-            displayName: name.current.value
+            displayName: name.current.value,
           })
-            .then(() => {
-              navigate("/browse")
-            })
+            .then(() => {})
             .catch((error) => {
-              setErrorMessage(error.message)
+              setErrorMessage(error.message);
             });
-
-         
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          setErrorMessage(errorCode+ "-" + errorMessage)
+          setErrorMessage(errorCode + "-" + errorMessage);
           // ..
         });
-    }
-    else{
-      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+    } else {
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
-          navigate("/browse");
+          // console.log(user);
 
           // ...
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          setErrorMessage(errorCode+ "-"+ errorMessage)
+          setErrorMessage(errorCode + "-" + errorMessage);
         });
-
-
     }
-
-
-
   };
   const toggleSignIn = () => {
     setIsSignInForm(!isSignInForm);
@@ -92,7 +87,7 @@ const Login = () => {
         </h1>
         {!isSignInForm && (
           <input
-          ref={name}
+            ref={name}
             className="p-4 my-4 w-full bg-gray-700"
             type="text"
             placeholder="Full Name"

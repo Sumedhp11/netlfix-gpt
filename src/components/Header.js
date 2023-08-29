@@ -1,22 +1,34 @@
-import React from "react";
-import { signOut } from "firebase/auth";
+import { useEffect } from "react";
+import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../utils/Firebase";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser, removeUser } from "../utils/userSlice";
 
 const Header = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector((store)=> store.user);
+  const user = useSelector((store) => store.user);
 
-  const handleSignOut = () =>{
+  const handleSignOut = () => {
     signOut(auth)
-      .then(() => {
-        navigate("/");
-      })
+      .then(() => {})
       .catch((error) => {
-         navigate("/error");
+        navigate("/error");
       });
-  }
+  };
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName } = user;
+        dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
+        navigate("/browse");
+      } else {
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+  }, []);
   return (
     <div className="flex justify-between absolute px-8 py-2 bg-gradient-to-b w-full from-black z-10">
       <Link to={"/"}>
