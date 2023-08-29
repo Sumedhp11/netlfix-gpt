@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
-import { createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword,signInWithEmailAndPassword ,updateProfile } from "firebase/auth";
 import { checkValidData } from "../utils/validate";
 import { auth } from "../utils/Firebase";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,7 @@ const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate()
+  const name = useRef()
   const email = useRef(null);
   const password = useRef(null);
 
@@ -27,9 +28,18 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          // console.log(user);
-          navigate("/browse")
-          // ...
+          updateProfile(user, {
+            displayName: name.current.value
+          })
+            .then(() => {
+              navigate("/browse")
+            })
+            .catch((error) => {
+              setErrorMessage(error.message)
+            });
+
+         
+          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -82,6 +92,7 @@ const Login = () => {
         </h1>
         {!isSignInForm && (
           <input
+          ref={name}
             className="p-4 my-4 w-full bg-gray-700"
             type="text"
             placeholder="Full Name"
