@@ -32,7 +32,7 @@ const Header = () => {
     return () => unsubscribe();
   }, []);
   return (
-    <div className="flex justify-between absolute px-8 py-2 bg-gradient-to-b w-full from-black z-10">
+    <div className="flex justify-between absolute px-8 py-2 bg-gradient-to-b w-full from-black z-10 ">
       <Link to={"/"}>
         <img
           className="w-44"
