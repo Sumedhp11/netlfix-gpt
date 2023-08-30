@@ -1,16 +1,22 @@
 import GptSearchBar from "./GptSearchBar";
 import GptMovieSuggestion from "./GptMovieSuggestion";
-import {LOGIN_BG} from "../utils/constants"
+import { LOGIN_BG } from "../utils/constants";
 
 const GptSearch = () => {
   return (
-    <div>
-      <div className="fixed -z-10">
-        <img className="h-screen w-screen" src={LOGIN_BG} alt="" />
+    <>
+      <div className="fixed -z-10 ">
+        <img
+          className="w-screen h-screen object-cover"
+          src={LOGIN_BG}
+          alt="bg-img"
+        />
       </div>
-      <GptSearchBar />
-      <GptMovieSuggestion />
-    </div>
+      <div className="">
+        <GptSearchBar />
+        <GptMovieSuggestion />
+      </div>
+    </>
   );
 };
 
