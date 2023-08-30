@@ -17,3 +17,8 @@ export const USER_ICON =
 
 export const POSTER_URL_CDN = "https://image.tmdb.org/t/p/w500/";
 export const TMDB_API_KEY = "5fb728e7a04288ff1ce64703d02b9c0f";
+
+export const SUPPORTED_LANG = [{identifier:"en",name:"English"},
+{identifier:'hindi' ,name:"HINDI"},{
+  identifier:'marathi',name:"MARATHI"
+}]

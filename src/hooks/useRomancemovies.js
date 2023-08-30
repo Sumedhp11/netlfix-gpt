@@ -14,7 +14,7 @@ const useRomanceMovies = () => {
     );
     const json = await data.json();
     dispatch(addRomanceMovies(json.results));
-    console.log(json);
+    // console.log(json);
   };
 };
 export default useRomanceMovies;
