@@ -9,6 +9,7 @@ const MainContainer = () => {
 
   const mainMovie = movies[Math.floor(Math.random() * movies.length)];
   const { original_title, overview, id } = mainMovie;
+  // console.log(id);
 
   return (
     <div className=" pt-[25%] bg-black md:pt-0">

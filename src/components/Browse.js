@@ -12,9 +12,14 @@ import GptSearch from "./GptSearch";
 import Header from "./Header";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
+import MovieDetails from "./MovieDetails";
 
 const Browse = () => {
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
+  const showMovieDetails = useSelector(
+    (store) => store.movieDetails.showMovieDetails
+  );
+
   useNowPlayingMovies();
   usePopularMovies();
   useTopRatedMovies();
@@ -24,20 +29,29 @@ const Browse = () => {
   useNetlixOriginals();
   useRomanceMovies();
   useActionMovies();
-
-  return (
-    <div>
-      <Header />
-      {showGptSearch ? (
-        <GptSearch />
-      ) : (
-        <>
-          <MainContainer />
-          <SecondaryContainer />
-        </>
-      )}
-    </div>
-  );
+  if (!showMovieDetails && !showGptSearch) {
+    return (
+      <div>
+        <Header />
+        <MainContainer />
+        <SecondaryContainer />
+      </div>
+    );
+  } else if (showGptSearch === true) {
+    return (
+      <div>
+        <Header />
+        <GptSearch />;
+      </div>
+    );
+  } else if (showMovieDetails) {
+    return (
+      <div>
+        <Header />
+        <MovieDetails />
+      </div>
+    );
+  }
 };
 
 export default Browse;

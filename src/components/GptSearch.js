@@ -12,7 +12,7 @@ const GptSearch = () => {
           alt="bg-img"
         />
       </div>
-      <div className="">
+      <div >
         <GptSearchBar />
         <GptMovieSuggestion />
       </div>

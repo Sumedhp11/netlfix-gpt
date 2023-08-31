@@ -2,7 +2,7 @@ import React from "react";
 import MovieCard from "./MovieCard";
 
 const MovieList = ({ title, movies }) => {
-    if(!movies) return null;
+  if (!movies) return null;
   // console.log(movies);
   return (
     <div className="px-6">
@@ -10,7 +10,11 @@ const MovieList = ({ title, movies }) => {
       <div className="flex overflow-x-scroll no-scrollbar ">
         <div className="flex">
           {movies?.map((movie) => (
-            <MovieCard key={movie.id} posterPath={movie.poster_path} />
+            <MovieCard
+              key={movie.id}
+              posterPath={movie.poster_path}
+              id={movie.id}
+            />
           ))}
         </div>
       </div>

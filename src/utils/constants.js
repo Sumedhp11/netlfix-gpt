@@ -18,7 +18,7 @@ export const API_OPTIONS = {
 
 export const POSTER_URL_CDN = "https://image.tmdb.org/t/p/w500/";
 export const TMDB_API_KEY = `${process.env.REACT_APP_TMDB_API}`;
-console.log(TMDB_API_KEY);
+// console.log(TMDB_API_KEY);
 
 export const SUPPORTED_LANG = [
   { identifier: "en", name: "English" },
@@ -30,4 +30,4 @@ export const SUPPORTED_LANG = [
 ];
 
 export const OPENAI_KEY = `${process.env.REACT_APP_OPENAI_KEY}`;
-console.log(OPENAI_KEY);
+// console.log(OPENAI_KEY);
