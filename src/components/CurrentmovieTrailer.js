@@ -6,9 +6,9 @@ const CurrentmovieTrailer = () => {
 
   const url =
     "https://www.youtube.com/embed/" +
-    ytKey.key +
+    ytKey?.key +
     "?autoplay=1&loop=1&controls=0&playlist=" +
-    ytKey.key;
+    ytKey?.key;
   //   console.log(ytKey.key);
   return (
     <div className="pt-[30%] lg:pt-[3%] flex justify-center pb-9">
