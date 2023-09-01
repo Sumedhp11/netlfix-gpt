@@ -7,6 +7,7 @@ import { addUser, removeUser } from "../utils/userSlice";
 import { LOGO_URL, SUPPORTED_LANG, USER_ICON } from "../utils/constants";
 import { toggleGptSearchView } from "../utils/gptSlice";
 import { changeLanguage } from "../utils/configSlice";
+import { showMovieDetails } from "../utils/movieDetailSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -39,6 +40,10 @@ const Header = () => {
     dispatch(toggleGptSearchView());
   };
 
+  const handleClick = () => {
+    dispatch(showMovieDetails());
+  };
+
   const handleLanguageChange = (e) => {
     dispatch(changeLanguage(e.target.value));
   };
@@ -46,7 +51,12 @@ const Header = () => {
   return (
     <div className="flex justify-between absolute  px-8 py-2 bg-gradient-to-b w-screen from-black z-10 flex-col md:flex-row  ">
       <Link to={"/"}>
-        <img className="w-44 mx-auto lg:mx-0" src={LOGO_URL} alt="logo" />
+        <img
+          className="w-44 mx-auto lg:mx-0"
+          src={LOGO_URL}
+          alt="logo"
+          onClick={handleClick}
+        />
       </Link>
       {user && (
         <div className="flex justify-center lg:p-2 ">

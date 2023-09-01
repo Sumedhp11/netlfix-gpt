@@ -14,6 +14,8 @@ const MovieList = ({ title, movies }) => {
               key={movie.id}
               posterPath={movie.poster_path}
               id={movie.id}
+              name={movie.title}
+              overview={movie.overview}
             />
           ))}
         </div>
