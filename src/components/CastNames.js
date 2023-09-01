@@ -5,10 +5,10 @@ const CastNames = ({ actor }) => {
   console.log(actor);
   return (
     <div>
-      <h2 className="mx-32 my-5  font-bold text-5xl">Cast:</h2>
+      <h2 className="mx-32 my-5  font-bold md:text-5xl text-xl">Cast:</h2>
       {cast &&
         cast.map((actor) => (
-          <p className="mx-32 my-5 font-semibold text-2xl">
+          <p className="mx-32 my-5 font-semibold md:text-2xl text-xl">
             {actor.name} as {actor.character}
           </p>
         ))}

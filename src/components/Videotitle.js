@@ -5,8 +5,8 @@ const Videotitle = ({ title, overview }) => {
   // console.log(overview);
   return (
     <div className="w-screen aspect-video pt-[20%] px-6 lg:px-24 absolute text-white bg-gradient-to-r from-black w-12/12">
-      <h1 className="text-2xl lg:text-6xl font-bold ">{title}</h1>
-      <p className="hidden lg:inline-block py-6 text-lg w-1/4 sm:text-sm}">
+      <h1 className="text-xl md:text-3xl font-bold ">{title}</h1>
+      <p className="hidden md:inline-block py-6 text-lg md:truncate w-1/4 }">
         {overview}
       </p>
       <div className="my-4 lg:m-0">

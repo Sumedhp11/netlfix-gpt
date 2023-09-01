@@ -42,8 +42,10 @@ const MovieDetails = () => {
     <div className="bg-blue-950 h-full flex flex-col">
       <CurrentmovieTrailer />
       <div className="flex text-white  m-auto flex-col bg-black opacity-70 ">
-        <h2 className="mx-32 my-5  font-bold text-5xl">Name: {movieTitle}</h2>
-        <p className="mx-32 my-5 font-semibold text-3xl">
+        <h2 className="mx-32 my-5  font-bold md:text-4xl text-xl">
+          Name: {movieTitle}
+        </h2>
+        <p className="mx-32 my-5 font-semibold md:text-3xl">
           OverView: {movieOverview}
         </p>
         {Cast && <CastNames actor={Cast} />}

@@ -59,7 +59,7 @@ const Header = () => {
         />
       </Link>
       {user && (
-        <div className="flex justify-center lg:p-2 ">
+        <div className="flex justify-center lg:p-2 items-center">
           {showGptSearch && (
             <select
               onChange={handleLanguageChange}
@@ -74,7 +74,7 @@ const Header = () => {
           )}
           <button
             onClick={handleGptSearchclick}
-            className="py-2 px-4 mx-4 my-2 bg-purple-800 text-white rounded-lg"
+            className="py-2 h-12 px-4 mx-4 my-2 bg-purple-800 text-white rounded-lg"
           >
             {showGptSearch ? "HomePage" : "GPT Search"}
           </button>

@@ -11,9 +11,9 @@ const CurrentmovieTrailer = () => {
     ytKey?.key;
   //   console.log(ytKey.key);
   return (
-    <div className="pt-[30%] lg:pt-[3%] flex justify-center pb-9">
+    <div className=" md:pt-[0]  pt-40 flex justify-center pb-9">
       <iframe
-        className="w-3/4  pt-[6%] aspect-video rounded-lg "
+        className="w-3/4  sm:pt-[15%] aspect-video rounded-lg "
         src={url}
         allowFullScreen
         title="YouTube video player"
