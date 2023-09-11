@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import useActionMovies from "../hooks/useActionMovies";
 import useComedyMovies from "../hooks/useComedyMovies";
@@ -13,12 +14,17 @@ import Header from "./Header";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
 import MovieDetails from "./MovieDetails";
+import WatchList from "./WatchList";
 
 const Browse = () => {
+  // console.log(setgetToggleWatchListData);
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
   const showMovieDetails = useSelector(
     (store) => store.movieDetails.showMovieDetails
   );
+
+  const toggleWatchPage = useSelector((store) => store.watchlist.showWatchPage);
+  // console.log(toggleWatchPage);
 
   useNowPlayingMovies();
   usePopularMovies();
@@ -29,29 +35,23 @@ const Browse = () => {
   useNetlixOriginals();
   useRomanceMovies();
   useActionMovies();
-  if (!showMovieDetails && !showGptSearch) {
-    return (
-      <div>
-        <Header />
-        <MainContainer />
-        <SecondaryContainer />
-      </div>
-    );
-  } else if (showGptSearch === true) {
-    return (
-      <div>
-        <Header />
-        <GptSearch />;
-      </div>
-    );
-  } else if (showMovieDetails) {
-    return (
-      <div>
-        <Header />
+
+  return (
+    <React.Fragment>
+      <Header />
+      {showGptSearch ? (
+        <GptSearch />
+      ) : showMovieDetails === true ? (
         <MovieDetails />
-      </div>
-    );
-  }
+      ) : (
+        <React.Fragment>
+          <MainContainer />
+          <SecondaryContainer />
+        </React.Fragment>
+      )}
+      {toggleWatchPage && <WatchList />}
+    </React.Fragment>
+  );
 };
 
 export default Browse;

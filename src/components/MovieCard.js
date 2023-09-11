@@ -3,18 +3,20 @@ import { POSTER_URL_CDN } from "../utils/constants";
 import {
   addCurrentMovie,
   addCurrentMovieOverview,
+  addCurrentMovieallDetails,
   addMovieDetails,
 } from "../utils/movieDetailSlice";
 import { useDispatch } from "react-redux";
 import { showMovieDetails } from "../utils/movieDetailSlice";
 
-const MovieCard = ({ posterPath, id, name,overview }) => {
+const MovieCard = ({ posterPath, id, name, overview, movie }) => {
   const dispatch = useDispatch();
   const ToggleMovieDetails = () => {
     dispatch(addMovieDetails(id));
     dispatch(showMovieDetails());
     dispatch(addCurrentMovie(name));
     dispatch(addCurrentMovieOverview(overview));
+    dispatch(addCurrentMovieallDetails(movie));
   };
   if (!posterPath) return null;
   // console.log(posterPath);

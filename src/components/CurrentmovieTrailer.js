@@ -11,7 +11,7 @@ const CurrentmovieTrailer = () => {
     ytKey?.key;
   //   console.log(ytKey.key);
   return (
-    <div className=" md:pt-[0]  pt-40 flex justify-center pb-9">
+    <div className=" md:pt-0  pt-40 flex justify-center pb-9">
       <iframe
         className="w-3/4  sm:pt-[15%] aspect-video rounded-lg "
         src={url}

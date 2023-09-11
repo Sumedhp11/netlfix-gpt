@@ -8,10 +8,12 @@ import {
 import { checkValidData } from "../utils/validate";
 import { auth } from "../utils/Firebase";
 import { LOGIN_BG } from "../utils/constants";
+import { useSelector } from "react-redux";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  const user = useSelector((store) => store.user);
 
   const name = useRef();
   const email = useRef(null);
@@ -76,6 +78,7 @@ const Login = () => {
         <img className="h-screen w-screen object-cover" src={LOGIN_BG} alt="" />
       </div>
       <form
+        method="POST"
         onSubmit={(e) => e.preventDefault()}
         className=" absolute p-12 bg-black w-full lg:w-3/12 my-36 rounded-lg bg-opacity-80 text-white mx-auto right-0 left-0"
       >
@@ -104,6 +107,7 @@ const Login = () => {
         />
         <p className="text-red-500 font-bold text-lg py-2">{errorMessage}</p>
         <button
+          type="submit"
           className="p-4 my-6  w-full bg-red-700 rounded-lg"
           onClick={handleButtonClick}
         >

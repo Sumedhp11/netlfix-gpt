@@ -5,10 +5,19 @@ import { addMovieTrailer } from "../utils/movieDetailSlice";
 import CurrentmovieTrailer from "./CurrentmovieTrailer";
 import useGetCredit from "../hooks/useGetCredit";
 import CastNames from "./CastNames";
+import { addtowatchList } from "../utils/watchlistSlice";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../utils/Firebase";
 
 const MovieDetails = () => {
   const dispatch = useDispatch();
+  const watchlist = useSelector((store) => store.watchlist.watchlistMovies);
+  console.log(watchlist);
 
+  const allmovieDetails = useSelector(
+    (store) => store.movieDetails.currentmovieallDetails
+  );
+  // console.log(allmovieDetails);
   const movieId = useSelector((store) => store.movieDetails.currentMovieId);
   useGetCredit(movieId);
   const movieTitle = useSelector(
@@ -18,6 +27,20 @@ const MovieDetails = () => {
     (store) => store.movieDetails.currentMovieOverview
   );
   const Cast = useSelector((store) => store.movieDetails.movieCast);
+
+  const sendWatchListData = async () => {
+    const WatchRef = await addDoc(collection(db, "WatchList"), {
+      watchlist: watchlist,
+    });
+    console.log("watchList Stored");
+  };
+
+  const addWatchList = async () => {
+    dispatch(addtowatchList(allmovieDetails));
+    if (watchlist) {
+      sendWatchListData();
+    }
+  };
 
   const getTrailer = async () => {
     const data = await fetch(
@@ -41,6 +64,12 @@ const MovieDetails = () => {
   return (
     <div className="bg-blue-950 h-full flex flex-col">
       <CurrentmovieTrailer />
+      <button
+        onClick={addWatchList}
+        className="text-white bg-purple-700 w-32 px-2 md:text-2xl text-xl font-semibold rounded-lg mb-9 p-4 m-auto"
+      >
+        Add To WatchList
+      </button>
       <div className="flex text-white  m-auto flex-col bg-black opacity-70 ">
         <h2 className="mx-32 my-5  font-bold md:text-4xl text-xl">
           Name: {movieTitle}

@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const movieDetailsSlice = createSlice({
   name: "movieDetails",
   initialState: {
+    currentmovieallDetails: null,
     showMovieDetails: false,
     currentMovietitle: null,
     currentMovieId: null,
@@ -29,6 +30,9 @@ const movieDetailsSlice = createSlice({
     addCast: (state, action) => {
       state.movieCast = action.payload;
     },
+    addCurrentMovieallDetails: (state, action) => {
+      state.currentmovieallDetails = action.payload;
+    },
   },
 });
 
@@ -38,6 +42,7 @@ export const {
   addMovieTrailer,
   addCurrentMovie,
   addCurrentMovieOverview,
+  addCurrentMovieallDetails,
   addCast,
 } = movieDetailsSlice.actions;
 export default movieDetailsSlice.reducer;
